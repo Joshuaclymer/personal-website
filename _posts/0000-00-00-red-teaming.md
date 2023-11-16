@@ -76,7 +76,7 @@ To demonstrate unintended propensities, red teamers can:
 **Find inputs and environments that reveal unintended propensities**: for example, to identify deceptive behavior, red teamers might craft ‘honeypot environments,’ where AI systems are given what they’ve been fooled to think is an opportunity to steal money. If the AI system takes the bait, this would clearly demonstrate unintended propensities.
 **Modify the AI system so that it exhibits unintended propensities**: for example, red teamers might fine-tune AI systems to maximize profit. This is something companies might realistically do and could produce [dominance-seeking behaviors](https://www.cold-takes.com/why-would-ai-aim-to-defeat-humanity/).
 
-### Providing indirect evidence that an AI system may exhibit unintended propensities in the future.
+### Providing indirect evidence that an AI system may exhibit unintended propensities in the future
 I expect most of the value of red teaming organizations will be to provide evidence for **illegible hazards**: hazards that are not easy to discover by interacting with the system in normal ways or don’t harm the economic utility of the system very much. These hazards are, by definition, difficult to directly demonstrate.
 
 There are a few categories of illegible hazards that I’m concerned about:
