@@ -10,7 +10,7 @@ A few collaborators and I recently released the paper, “Generalization Analogi
 
 Summary: **when AI safety is hard to measure, check whether AI alignment techniques can be used to solve easier-to-grade, analogous problems**. For example, to determine whether developers can control how honesty generalizes to superhuman domains, check whether they can control generalization across other distribution shifts like ‘instructions 5th graders can evaluate’ to ‘instructions that PhDs can evaluate.’ Or to test if developers can catch deception, check whether they can identify deliberately planted ‘trojan’ behaviors. Even when the safety of a particular AI system is hard to measure, the effectiveness of AI safety researchers and their tools is often much easier to measure – just like how it’s easier to measure rocket components in Aerospace testbeds like wind tunnels and pressure chambers than to measure them by launching a rocket. These ‘testbed’  evals will likely be an important pillar of any AI regulatory framework but have so far received little attention.
 
-![Alt text](image.png)
+![img](https://res.cloudinary.com/lesswrong-2-0/image/upload/f_auto,q_auto/v1/mirroredImages/okmB8ymyhgc65WckN/ghuihv6jreaal9mzim2g.png)
 
 ## Background: why is AI safety ‘hard to measure’
 There are two basic reasons why it's hard to tell whether AI systems follow developer instructions.
