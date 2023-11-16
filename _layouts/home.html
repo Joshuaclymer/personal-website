@@ -4,119 +4,67 @@ layout: page
 
 {{ content }}
 
-{% assign posts = paginator.posts | default: site.posts %}
-
 <!-- role="list" needed so that `list-style: none` in Safari doesn't remove the list semantics -->
-<ul class="posts-list list-unstyled" role="list">
-  {% for post in posts %}
-  <li class="post-preview">
-    <article>
+<style>
+.truncate p {
+    display: -webkit-box;
+    -webkit-line-clamp: 5; /* number of lines to show */
+    -webkit-box-orient: vertical;  
+    overflow: hidden;
+    margin:0px;
+}
 
-      {%- capture thumbnail -%}
-        {% if post.thumbnail-img %}
-          {{ post.thumbnail-img }}
-        {% elsif post.cover-img %}
-          {% if post.cover-img.first %}
-            {{ post.cover-img[0].first.first }}
-          {% else %}
-            {{ post.cover-img }}
-          {% endif %}
-        {% else %}
-        {% endif %}
-      {% endcapture %}
-      {% assign thumbnail=thumbnail | strip %}
+.expand p {
+    white-space: normal;
+    overflow: visible;
+    margin:0px;
+}
 
-      {% if site.feed_show_excerpt == false %}
-      {% if thumbnail != "" %}
-      <div class="post-image post-image-normal">
-        <a href="{{ post.url | absolute_url }}" aria-label="Thumbnail">
-          <img src="{{ thumbnail | absolute_url }}" alt="Post thumbnail">
-        </a>
-      </div>
-      {% endif %}
-      {% endif %}
+</style>
 
-      <a href="{{ post.url | absolute_url }}">
-        <h2 class="post-title">{{ post.title | strip_html }}</h2>
+<script>
+  function truncateText(selector, maxLength) {
+    var element = document.querySelector(selector);
+    var truncated = element.innerText;
 
-        {% if post.subtitle %}
-          <h3 class="post-subtitle">
-          {{ post.subtitle | strip_html }}
-          </h3>
-        {% endif %}
-      </a>
+    if (truncated.length > maxLength) {
+        truncated = truncated.substr(0,maxLength) + '...';
+    }
+    element.innerText = truncated;
+}
 
-      {% if post.author %}
-        <span>By <strong>{{ post.author | strip_html }}</strong></span>
-      {% endif %}
-      <p class="post-meta">
-        {% assign date_format = site.date_format | default: "%B %-d, %Y" %}
-        Posted on {{ post.date | date: date_format }}
-      </p>
 
-      {% if thumbnail != "" %}
-      <div class="post-image post-image-small">
-        <a href="{{ post.url | absolute_url }}" aria-label="Thumbnail">
-          <img src="{{ thumbnail | absolute_url }}" alt="Post thumbnail">
-        </a>
-      </div>
-      {% endif %}
+// Usage:
+truncateText('#textBox p', 1000); // Truncate to 100 characters
 
-      {% unless site.feed_show_excerpt == false %}
-      {% if thumbnail != "" %}
-      <div class="post-image post-image-short">
-        <a href="{{ post.url | absolute_url }}" aria-label="Thumbnail">
-          <img src="{{ thumbnail | absolute_url }}" alt="Post thumbnail">
-        </a>
-      </div>
-      {% endif %}
 
-      <div class="post-entry">
-        {% assign excerpt_length = site.excerpt_length | default: 50 %}
-        {{ post.excerpt | strip_html | truncatewords: excerpt_length }}
-        {% assign excerpt_word_count = post.excerpt | number_of_words %}
-        {% if post.content != post.excerpt or excerpt_word_count > excerpt_length %}
-          <a href="{{ post.url | absolute_url }}" class="post-read-more">[Read&nbsp;More]</a>
-        {% endif %}
-      </div>
-      {% endunless %}
+function expandText() {
+    var textBox = document.querySelector('#textBox');
+    var link = textBox.querySelector('a');
+    
+    if (textBox.classList.contains('truncate')) {
+      textBox.classList.remove('truncate');
+      textBox.classList.add('expand');
+      link.innerHTML = '<p style="margin-top:5px;color:grey;font-size:15px">(click to collapse)</p>';
+    } else {
+      textBox.classList.remove('expand');
+      textBox.classList.add('truncate');
+      link.innerHTML = '<p style="margin-top:5px;color:grey;font-size:15px">(click to expand)</p>';
+    }
+  }
+</script>
 
-      {% if site.feed_show_tags != false and post.tags.size > 0 %}
-      <div class="blog-tags">
-        <span>Tags:</span>
-        <!-- role="list" needed so that `list-style: none` in Safari doesn't remove the list semantics -->
-        <ul class="d-inline list-inline" role="list">
-          {% for tag in post.tags %}
-          <li class="list-inline-item">
-            <a href="{{ '/tags' | absolute_url }}#{{- tag -}}">{{- tag -}}</a>
-          </li>
-          {% endfor %}
-        </ul>
-      </div>
-      {% endif %}
-
-    </article>
-  </li>
-  {% endfor %}
-</ul>
-
-{% if paginator.total_pages > 1 %}
-<ul class="pagination main-pager">
-  {% if paginator.previous_page %}
-  <li class="page-item previous">
-    <a class="page-link" href="{{ paginator.previous_page_path | absolute_url }}">
-      <i class="fas fa-arrow-left" alt="Newer Posts"></i>
-      <span class="d-none d-sm-inline-block">Newer Posts</span>
-    </a>
-  </li>
-  {% endif %}
-  {% if paginator.next_page %}
-  <li class="page-item next">
-    <a class="page-link" href="{{ paginator.next_page_path | absolute_url }}">
-      <span class="d-none d-sm-inline-block">Older Posts</span>
-      <i class="fas fa-arrow-right" alt="Older Posts"></i>
-    </a>
-  </li>
-  {% endif %}
-</ul>
-{% endif %}
+<h1>Research</h1>
+<div>
+<a href="https://arxiv.org/abs/2311.07723"><h4>Generalization Analogies: a Testbed for Generalizing AI Oversight to Hard-To-Measure Domains</h4></a>
+<div style="display:flex">
+<a href="https://arxiv.org/abs/2311.07723"><p style="margin:0px; margin-right:10px">[Paper]</p></a>
+<a href="https://twitter.com/joshua_clymer/status/1724851456967417872"><p style="margin:0px; margin-right:10px">[Tweet Thread]</p></a>
+<a href="https://joshuaclymer.github.io/generalization-analogies-website/"><p style="margin:0px; margin-right:10px">[Browse Datasets]</p></a>
+<a href="https://github.com/Joshuaclymer/GENIES"><p style="margin:0px; margin-right:10px">[Code]</p></a>
+</div>
+<div id="textBox" class="truncate">
+  <p style="margin-top:10px;font-size:15px" onclick="expandText()">  As AI systems become more intelligent and their behavior becomes more challenging to assess, they may learn to game the flaws of human feedback instead of genuinely striving to follow instructions; however, this risk can be mitigated by controlling how LLMs generalize human feedback to situations where it is unreliable. To better understand how reward models generalize, we craft 69 distribution shifts spanning 8 categories. We find that reward models do not learn to evaluate `instruction-following' by default and instead favor personas that resemble internet text. Techniques for interpreting reward models' internal representations achieve better generalization than standard fine-tuning, but still frequently fail to distinguish instruction-following from conflated behaviors. We consolidate the 15 most challenging distribution shifts into the GENaralization analogIES (GENIES) benchmark, which we hope will enable progress toward controlling reward model generalization.</p>
+  <a onclick="expandText()"><p style="margin-top:5px;color:grey;font-size:15px">(click to expand)</p></a>
+</div>
+</div>
